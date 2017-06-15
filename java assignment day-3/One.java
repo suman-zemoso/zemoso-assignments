@@ -3,6 +3,7 @@ abstract class Rodent {
 	abstract void eats();
 	abstract void bites();
 	abstract void violent();
+
 }
 
 class Mouse extends Rodent {
