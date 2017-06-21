@@ -7,7 +7,7 @@ class FilePathFinder {
 		if(fileslist != null){
 			for(File f : fileslist){
 				if(f.isFile() && f.getName().matches(s)){System.out.println(f);}
-				else if(f.isDirectory()){findFiles(s, "" + f);}
+				else if(f.isDirectory()){findFiles(s,  f.getAbsolutePath());}
 			}
 		}
 	}

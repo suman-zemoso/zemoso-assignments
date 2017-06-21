@@ -1,55 +1,44 @@
-import java.net.Socket;
-import java.net.InetSocketAddress;
-import java.net.SocketAddress;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
-class MakeSocket {
-	final InetSocketAddress socketAddress;
-	MakeSocket(InetAddress inetAddress, int portNumber) {
-		socketAddress = new InetSocketAddress(inetAddress, portNumber);
+class PingProcess {
+	Process p;
+	String cmd;
+	PingProcess(String s){
+		cmd = "ping -c 10 " + s;
 	}
-	long calMedian(List<Long> l) {
-		Collections.sort(l);
-		return l.get(l.size()/2);
-	}	
-	void pingSocket(List<Long> l) {
-		for(int i = 0; i < 10; i++) {
-			try{
-				Socket sc = new Socket();
-				long time = System.currentTimeMillis();
-				long start = time;
-				sc.connect(socketAddress, 5000);
-				long end = System.currentTimeMillis();
-				time = end - time;
-				System.out.println("ping successful with start time: " + start + " and end time: " + end); 
-				sc.close();
-				l.add(time);
-			}catch(UnknownHostException e){
-				System.out.println("error: " + e);
-				//e.printStackTrace(System.out);
-			}catch(IOException e){
-				System.out.println("error: " + e);
-				//e.printStackTrace(System.out);
-			}	
+	void startPing() {
+		try{
+			System.out.println("pinging 10 times...");
+			p = Runtime.getRuntime().exec(cmd);
+			BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
+			String l;
+			List<Float> lis = new ArrayList<Float>();
+			int c = 0;
+        		while((l = r.readLine()) != null) {
+				String[] tmp = l.split(" ");
+           			if(c > 0 && c < 11){lis.add(Float.valueOf(tmp[7].substring(5)));}
+				c++;
+        		}
+			p.waitFor();
+			p.destroy();
+			System.out.println("the median time taken to ping is " + findMedianTime(lis));
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 	}
+	float findMedianTime(List<Float> ls) {
+		Collections.sort(ls);
+		return ls.get(ls.size()/2);
+	}
 }
+
 public class PingTime {
 	public static void main(String... args) {
-		try{
-			String ipAddress = "www.facebook.com";
-			InetAddress inet = InetAddress.getByName(ipAddress);
-			MakeSocket ms = new MakeSocket(inet, 80);
-			List<Long> l = new ArrayList<Long>();
-			ms.pingSocket(l);
-			System.out.println("Ping to " + inet + " is successful with a median time of " + ms.calMedian(l) + " milliseconds.");
-		}catch(Exception e) {
-			System.out.println("error: " + e);
-		}
-		
+		System.out.print("enter the web address: ");
+		Scanner sc = new Scanner(System.in);
+		String s = sc.next();
+		PingProcess pp = new PingProcess(s);
+		pp.startPing();
 	}
 }
-		

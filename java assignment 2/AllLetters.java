@@ -19,7 +19,7 @@ public class AllLetters {
 		AlphabetCheck ac = new AlphabetCheck();
 		System.out.print("enter the string: ");
 		Scanner sc = new Scanner(System.in);
-		String s = sc.next();
+		String s = sc.nextLine();
 		s = ac.removeAlphabet(s);
 		System.out.println(ac.set.size() == 26?"the string contains all the alphabets":"the string doesn't contain all the strings");
 	}
