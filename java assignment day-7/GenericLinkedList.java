@@ -49,6 +49,7 @@ class SList<T> {
 		return s;
 	}
 }
+
 public class GenericLinkedList {
 	public static void main(String... args) {
 		SList<Integer> sl = new SList<Integer>();
