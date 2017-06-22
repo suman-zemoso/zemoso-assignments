@@ -14,6 +14,7 @@ class FileContentReader {
 				for(char c : s.toCharArray()){
 					mp.put(c, mp.get(c) == null?1:mp.get(c) + 1);
 				}
+				mp.put('\n', mp.get('\n') == null?1:mp.get('\n') + 1);
 			}
 			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("testoutput.txt")));
 			for (Map.Entry<Character, Integer> entry : mp.entrySet()) {//printing the map inside the file "testoutput.txt".
