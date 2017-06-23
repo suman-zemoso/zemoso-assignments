@@ -9,12 +9,9 @@ class FileContentReader {
 	void printfile(){
 		try{
 			BufferedReader in = new BufferedReader( new FileReader(filename));
-			String s;
-			while((s = in.readLine()) != null) {//storing characters from file in map.
-				for(char c : s.toCharArray()){
-					mp.put(c, mp.get(c) == null?1:mp.get(c) + 1);
-				}
-				mp.put('\n', mp.get('\n') == null?0:mp.get('\n') + 1);
+			int c;
+			while((c = in.read()) != -1) {//storing characters from file in map.
+				mp.put((char)c, mp.get((char)c) == null?1:mp.get((char)c) + 1);
 			}
 			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("testoutput.txt")));
 			for (Map.Entry<Character, Integer> entry : mp.entrySet()) {//printing the map inside the file "testoutput.txt".
@@ -32,4 +29,3 @@ public class CharOccurrence {
 		fcr.printfile();
 	}
 }
-

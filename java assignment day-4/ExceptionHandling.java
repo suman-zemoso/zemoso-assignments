@@ -25,4 +25,5 @@ Exception1
 	at ExceptionHandling.method1(ExceptionHandling.java:8)
 	at ExceptionHandling.main(ExceptionHandling.java:15)
 in finally
-*/	
+*/
+//if NullPointerException is thrown before method(1) inside the try block then it will show an error that method(1) is unreachable and if it is thrown after the method(1) then the compiler doesn't get to that part of the code as method(1) throws the exception first, as a result finally is executed.
