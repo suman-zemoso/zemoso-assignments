@@ -18,9 +18,23 @@ class FormDateRange {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(signupdate);
 		cal.set(Calendar.YEAR, cal.get(Calendar.YEAR) + years); 
-		return cal.getTime();
+		Date anniversary = cal.getTime();
+		cal.add(Calendar.YEAR, 1);
+		cal.add(Calendar.DATE, -30);
+		Date temp = cal.getTime();
+		if(currentdate.getTime() >= temp.getTime()){
+			cal.add(Calendar.DATE, 30);
+			return cal.getTime();
+		}else{return anniversary;}
 	}
-	boolean validCurrentDate() {return !(closestAnniversary().equals(signupdate));}
+	boolean validCurrentDate() {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(signupdate);
+		cal.add(Calendar.YEAR, 1);
+		cal.add(Calendar.DATE, -30);
+		Date start = cal.getTime();
+		return currentdate.getTime() >= start.getTime();
+	}
 	void printRange() {
 		Date anniversary = closestAnniversary();
 		if(validCurrentDate()) {
