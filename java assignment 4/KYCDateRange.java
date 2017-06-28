@@ -52,7 +52,7 @@ class FormDateRange {
 		}else{System.out.println("there is still time for your first anniversary.");}	
 	}
 }
-class KYCDateRange {
+public class KYCDateRange {
 	public static void main(String... args) {
 		System.out.print("enter your sign up date in the format \"dd mm yyyy\" : ");
 		Scanner sc = new Scanner(System.in);
