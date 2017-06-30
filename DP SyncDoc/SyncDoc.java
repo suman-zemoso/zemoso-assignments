@@ -1,66 +1,128 @@
 import java.util.*;
 interface Doctor{
 	String getName();
-	String specialization();
+	boolean hasSpecialization(String kind);
+	String bookSlot();
 	public class Doctor1 implements Doctor{
 		String name = "Tom";
-		String kind = "kind1";
+		Set<String> kinds = new HashSet<String>();
+		String[] timeSlots = {"morning", "evening"};
+		Doctor1() {
+			kinds.add("kind1");
+			kinds.add("kind4");
+			kinds.add("kind5");
+			kinds.add("kind6");
+			kinds.add("kind9");
+			kinds.add("kind10");
+		}
 		public String getName(){return name;}
-		public String specialization(){return kind;}
+		public boolean hasSpecialization(String kind){return kinds.contains(kind);}
+		public String bookSlot() {
+			int i = 0;
+			System.out.println("Time slots available for Dr." + name + " are: ");
+			for(String s: timeSlots){System.out.println((++i) + ". " + s);}
+			System.out.print("enter the index of slot you want to book: ");
+			Scanner sc = new Scanner(System.in);
+			i = sc.nextInt();
+			return timeSlots[i - 1];
+		}
 	}
 	public class Doctor2 implements Doctor{
-		String name = "George";
-		String kind = "kind2";
+		String name = "Ram";
+		Set<String> kinds = new HashSet<String>();
+		String[] timeSlots = {"morning", "evening", "night"};
+		Doctor2() {
+			kinds.add("kind1");
+			kinds.add("kind2");
+			kinds.add("kind5");
+			kinds.add("kind6");
+			kinds.add("kind7");
+			kinds.add("kind10");
+		}
 		public String getName(){return name;}
-		public String specialization(){return kind;}
+		public boolean hasSpecialization(String kind){return kinds.contains(kind);}
+		public String bookSlot() {
+			int i = 0;
+			System.out.println("Time slots available for Dr." + name + " are: ");
+			for(String s: timeSlots){System.out.println((++i) + ". " + s);}
+			System.out.print("enter the index of slot you want to book: ");
+			Scanner sc = new Scanner(System.in);
+			i = sc.nextInt();
+			return timeSlots[i - 1];
+		}
 	}
 	public class Doctor3 implements Doctor{
 		String name = "Kumar";
-		String kind = "kind3";
+		Set<String> kinds = new HashSet<String>();
+		String[] timeSlots = {"morning", "after noon", "evening"};
+		Doctor3() {
+			kinds.add("kind1");
+			kinds.add("kind2");
+			kinds.add("kind3");
+			kinds.add("kind6");
+			kinds.add("kind7");
+			kinds.add("kind8");
+		}
 		public String getName(){return name;}
-		public String specialization(){return kind;}
+		public boolean hasSpecialization(String kind){return kinds.contains(kind);}
+		public String bookSlot() {
+			int i = 0;
+			System.out.println("Time slots available for Dr." + name + " are: ");
+			for(String s: timeSlots){System.out.println((++i) + ". " + s);}
+			System.out.print("enter the index of slot you want to book: ");
+			Scanner sc = new Scanner(System.in);
+			i = sc.nextInt();
+			return timeSlots[i - 1];
+		}
 	}
 	public class Doctor4 implements Doctor{
-		String name = "Chan";
-		String kind = "kind4";
+		String name = "Sing";
+		Set<String> kinds = new HashSet<String>();
+		String[] timeSlots = {"after noon", "evening"};
+		Doctor4() {
+			kinds.add("kind1");
+			kinds.add("kind2");
+			kinds.add("kind3");
+			kinds.add("kind4");
+			kinds.add("kind7");
+			kinds.add("kind8");
+			kinds.add("kind9");
+		}
 		public String getName(){return name;}
-		public String specialization(){return kind;}
+		public boolean hasSpecialization(String kind){return kinds.contains(kind);}
+		public String bookSlot() {
+			int i = 0;
+			System.out.println("Time slots available for Dr." + name + " are: ");
+			for(String s: timeSlots){System.out.println((++i) + ". " + s);}
+			System.out.print("enter the index of slot you want to book: ");
+			Scanner sc = new Scanner(System.in);
+			i = sc.nextInt();
+			return timeSlots[i - 1];
+		}
 	}
 	public class Doctor5 implements Doctor{
-		String name = "Alice";
-		String kind = "kind5";
+		String name = "George";
+		Set<String> kinds = new HashSet<String>();
+		String[] timeSlots = {"evening", "night"};
+		Doctor5() {
+			kinds.add("kind3");
+			kinds.add("kind4");
+			kinds.add("kind5");
+			kinds.add("kind8");
+			kinds.add("kind9");
+			kinds.add("kind10");
+		}
 		public String getName(){return name;}
-		public String specialization(){return kind;}
-	}
-	public class Doctor6 implements Doctor{
-		String name = "Singh";
-		String kind = "kind6";
-		public String getName(){return name;}
-		public String specialization(){return kind;}
-	}
-	public class Doctor7 implements Doctor{
-		String name = "Rao";
-		String kind = "kind7";
-		public String getName(){return name;}
-		public String specialization(){return kind;}
-	}
-	public class Doctor8 implements Doctor{
-		String name = "Suresh";
-		String kind = "kind8";
-		public String getName(){return name;}
-		public String specialization(){return kind;}
-	}
-	public class Doctor9 implements Doctor{
-		String name = "Mukesh";
-		String kind = "kind9";
-		public String getName(){return name;}
-		public String specialization(){return kind;}
-	}
-	public class Doctor10 implements Doctor{
-		String name = "Ram";
-		String kind = "kind10";
-		public String getName(){return name;}
-		public String specialization(){return kind;}
+		public boolean hasSpecialization(String kind){return kinds.contains(kind);}
+		public String bookSlot() {
+			int i = 0;
+			System.out.println("Time slots available for Dr." + name + " are: ");
+			for(String s: timeSlots){System.out.println((++i) + ". " + s);}
+			System.out.print("enter the index of slot you want to book: ");
+			Scanner sc = new Scanner(System.in);
+			i = sc.nextInt();
+			return timeSlots[i - 1];
+		}
 	}
 }
 class Welcome {
@@ -77,7 +139,9 @@ class SyncDocFacade {
 	Welcome welcome;
 	LoginCredentials lc;
 	Doctor doc;
+	List<Doctor> doctors = new ArrayList<Doctor>();
 	Class type;
+	String[] specializations = {"kind1", "kind2", "kind3", "kind4", "kind5", "kind6", "kind7", "kind8", "kind9", "kind10"};
 	SyncDocFacade() {
 		welcome = new Welcome();
 		lc = new LoginCredentials();
@@ -111,23 +175,19 @@ class SyncDocFacade {
 		System.out.print("Enter the index of specialization you want to consult: ");
 		Scanner sc = new Scanner(System.in);
 		int i = sc.nextInt();
-		while(boo) {
-			switch(i){
-				case 1: type = Doctor.Doctor1.class; boo = false; break;
-				case 2: type = Doctor.Doctor2.class; boo = false; break;
-				case 3: type = Doctor.Doctor3.class; boo = false; break;
-				case 4: type = Doctor.Doctor4.class; boo = false; break;
-				case 5: type = Doctor.Doctor5.class; boo = false; break;
-				case 6: type = Doctor.Doctor6.class; boo = false; break;
-				case 7: type = Doctor.Doctor7.class; boo = false; break;
-				case 8: type = Doctor.Doctor8.class; boo = false; break;
-				case 9: type = Doctor.Doctor9.class; boo = false; break;
-				case 10: type = Doctor.Doctor10.class; boo = false; break;
-				default : System.out.print("Please enter an integer from 1 to 10: "); i = sc.nextInt();
-			}
+		for(Class doctor : Doctor.class.getDeclaredClasses()) {
+			try{doc = (Doctor)doctor.newInstance();}catch(Exception e){e.printStackTrace();}
+			if(doc.hasSpecialization(specializations[i - 1])){doctors.add(doc);}
 		}
-		try{doc = (Doctor)type.newInstance();}catch(Exception e){e.printStackTrace();}
-		System.out.println("You have an appoint with Dr." + doc.getName() + " who has the specialization in " + doc.specialization());
+		System.out.println("Doctors available for the selected specialization are: ");
+		i = 0;
+		for(Doctor doctor : doctors) {System.out.println((++i) + ". Dr." +doctor.getName());}
+		System.out.print("Enter the index of the Doctor to consult: ");
+		i = sc.nextInt();
+		doc = doctors.get(i - 1);
+		String s = doc.bookSlot();
+		System.out.println("You appointment with Dr." + doc.getName() + " is booked for the " + s + " slot.");
+		
 	}
 }
 public class SyncDoc {
