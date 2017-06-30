@@ -1,0 +1,5 @@
+package syncDoc;
+
+public interface Doctor {
+
+}
