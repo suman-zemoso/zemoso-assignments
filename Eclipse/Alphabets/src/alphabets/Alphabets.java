@@ -11,14 +11,11 @@ public class Alphabets {
 			return false;
 		
 		for(char letter : input.toCharArray()){
-			if(Character.isLetter(letter))
+			if((letter >= 'a' && letter <= 'z') || (letter >= 'A' && letter <= 'Z'))
 				alphabets.add(Character.toUpperCase(letter));
 		}
 		
-		if(alphabets.size() == 26)
-			return true;
-		
-		return false;
+		return alphabets.size() == 26;
 	}
 
 	public static void main(String[] args) {

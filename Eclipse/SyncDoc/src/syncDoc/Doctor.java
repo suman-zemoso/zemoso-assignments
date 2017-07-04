@@ -29,6 +29,7 @@ public interface Doctor {
 			System.out.print("enter the index of slot you want to book: ");
 			Scanner sc = new Scanner(System.in);
 			i = sc.nextInt();
+			sc.close();
 			return timeSlots[i - 1];
 		}
 	}
@@ -53,6 +54,7 @@ public interface Doctor {
 			System.out.print("enter the index of slot you want to book: ");
 			Scanner sc = new Scanner(System.in);
 			i = sc.nextInt();
+			sc.close();
 			return timeSlots[i - 1];
 		}
 	}
@@ -77,6 +79,7 @@ public interface Doctor {
 			System.out.print("enter the index of slot you want to book: ");
 			Scanner sc = new Scanner(System.in);
 			i = sc.nextInt();
+			sc.close();
 			return timeSlots[i - 1];
 		}
 	}
@@ -102,6 +105,7 @@ public interface Doctor {
 			System.out.print("enter the index of slot you want to book: ");
 			Scanner sc = new Scanner(System.in);
 			i = sc.nextInt();
+			sc.close();
 			return timeSlots[i - 1];
 		}
 	}
@@ -126,6 +130,7 @@ public interface Doctor {
 			System.out.print("enter the index of slot you want to book: ");
 			Scanner sc = new Scanner(System.in);
 			i = sc.nextInt();
+			sc.close();
 			return timeSlots[i - 1];
 		}
 	}

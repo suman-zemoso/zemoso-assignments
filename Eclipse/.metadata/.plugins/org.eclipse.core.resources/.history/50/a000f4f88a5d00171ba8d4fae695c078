@@ -1,0 +1,17 @@
+package paymentsIndia;
+
+public class COD {
+
+	private int amount;
+	
+	public COD(int amount) {
+		this.amount = amount;
+	}
+	
+	@Override
+	public String pay(int amount) {
+			return "you have paid the amount of Rs." + amount + "using COD.";
+	}
+
+
+}

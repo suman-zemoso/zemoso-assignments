@@ -1,0 +1,12 @@
+package utooCabService;
+
+public class FactoryBuilder {
+	public BranchFactory makeFactory(String city){
+		BranchFactory bf;
+		if(city.equals("Hyd")){bf = new HydBranchFactory();}
+		else if(city.equals("Ban")){bf = new BangaloreBranchFactory();}
+		else if(city.equals("Chen")){bf = new ChennaiBranchFactory();}
+		else{bf = null;}
+		return bf;
+	}
+}

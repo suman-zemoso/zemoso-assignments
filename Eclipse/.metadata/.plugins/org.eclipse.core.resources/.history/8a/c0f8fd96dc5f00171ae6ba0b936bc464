@@ -1,0 +1,10 @@
+package utooCabService;
+
+public abstract class Cab {
+
+	protected double rate;
+	
+	public void printRateChart(){
+		System.out.printf("%s %.2f Rs/Km \n", "rate", rate);
+	}
+}

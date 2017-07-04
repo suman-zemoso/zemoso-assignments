@@ -1,0 +1,12 @@
+package paymentsIndia;
+
+public class CreditCard implements PaymentMode {
+
+	private int amount;
+	@Override
+	public String pay(int amount) {
+			this.amount = amount;
+			return "you have paid the amount of Rs." + amount + "using Credit Card.";
+	}
+
+}

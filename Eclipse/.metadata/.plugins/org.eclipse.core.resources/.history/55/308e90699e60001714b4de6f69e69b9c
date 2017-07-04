@@ -1,0 +1,24 @@
+package alphabets;
+
+import java.util.Scanner;
+
+public class Alphabets {
+	private boolean containsAllLetters(String letters){
+		if(letters.length() < 26)
+			return false;
+		
+		
+		
+		return false;
+	}
+
+	public static void main(String[] args) {
+
+		Alphabets alphabets = new Alphabets();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the sequence.");
+		boolean b = alphabets.containsAllLetters(sc.nextLine());
+		sc.close();
+	}
+
+}

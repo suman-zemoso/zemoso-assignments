@@ -1,0 +1,16 @@
+package paymentsIndia;
+
+public class NetBanking {
+
+	private int amount;
+	
+	public NetBanking(int amount) {
+		this.amount = amount;
+	}
+	
+	public String pay(int amount) {
+			return "you have paid the amount of Rs." + amount + "using Credit Card.";
+	}
+
+
+}

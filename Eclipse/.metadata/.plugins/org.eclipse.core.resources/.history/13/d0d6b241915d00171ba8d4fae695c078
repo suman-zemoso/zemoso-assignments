@@ -1,0 +1,10 @@
+package paymentsIndia;
+
+public class PaymentFactory {
+	
+	public PaymentMode makePaymentMode(String s, int amount){
+		if(s.equals("Debit Card"))
+			return new DebitCard(amount);
+	}
+
+}

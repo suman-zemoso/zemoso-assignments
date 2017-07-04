@@ -17,7 +17,7 @@ public class Individual implements Observer {
 		this.INR = INR;
 		this.converter = converter;
 		System.out.println("New Observer " + this.id);
-		converter.register(this);
+		this.converter.register(this);
 	}
 	
 	public void update(double USD, double GBP, double Euro) {
