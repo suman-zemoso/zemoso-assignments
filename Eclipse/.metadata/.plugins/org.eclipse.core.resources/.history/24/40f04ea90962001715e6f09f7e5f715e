@@ -1,0 +1,26 @@
+package suman;
+
+import java.util.Scanner;
+
+public class Suman {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		String input = sc.nextLine();
+		
+		for(String indexNumber: input.split(",")){
+			switch(Integer.parseInt(indexNumber)){
+			case 1: System.out.print("Cheese()"); break;
+			case 2: System.out.print(" Eggs()"); break;
+			case 3: System.out.print(" Veggies()"); break;
+			case 4: System.out.print("w Chicken()"); break;
+			default: System.out.print("please enter the valid index numbers separated"
+					+ " by a comma (,) example '1,2' for first two AddOns: ");
+				input = sc.nextLine();
+			}
+		}
+		
+	}
+
+}

@@ -1,0 +1,36 @@
+package subwayRecipes;
+
+import java.util.List;
+
+public class Sub implements SubPlan {
+
+	private Bread bread;
+	private Salad salad;
+	private List<Sauce> sauces;
+	private List<AddOn> addOns;
+	
+	@Override
+	public void setBread() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void setSalad() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void setSauce() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void setAddOn() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,6 @@
+package subwayRecipes;
+
+public interface AddOn {
+
+	int getCost();//returns the price of the AddOn.
+}

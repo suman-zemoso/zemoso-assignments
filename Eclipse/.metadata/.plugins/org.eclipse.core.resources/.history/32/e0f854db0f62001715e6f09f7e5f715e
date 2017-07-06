@@ -1,0 +1,26 @@
+package subwayRecipes;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class VegMexicanPattySubBuilder extends SubBuilder {
+
+	@Override
+	public void addBread() {
+		sub.setBread(new WhiteBread());
+	}
+
+	@Override
+	public void addSalad() {
+		sub.setSalad(new VegMexicanPattySalad());
+	}
+
+	@Override
+	public void addSauce() {
+		List<Sauce> sauces = new ArrayList<Sauce>(
+				Arrays.asList(new Mayonnaise(), new SweetOnionSauce(), new ChilliSauce()));
+		sub.setSauce(sauces);
+	}
+
+}

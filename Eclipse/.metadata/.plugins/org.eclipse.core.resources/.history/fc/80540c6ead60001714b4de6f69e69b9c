@@ -1,0 +1,9 @@
+package utooCab;
+
+public class SedanCab extends Cab {
+
+	public SedanCab(double cityCostFactor){
+		rate = cityCostFactor*24;
+		model = "Sedan";
+	}
+}

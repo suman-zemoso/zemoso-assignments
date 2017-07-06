@@ -1,0 +1,20 @@
+package subwayRecipes;
+
+public class ChickenSubBuilder extends SubBuilder {
+
+	@Override
+	public void addBread() {
+		
+	}
+
+	@Override
+	public void addSalad() {
+
+	}
+
+	@Override
+	public void addSauce() {
+
+	}
+
+}

@@ -1,0 +1,11 @@
+package subwayRecipes;
+
+public class SweetOnionSauce implements Sauce {
+
+	@Override
+	public int getCost() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

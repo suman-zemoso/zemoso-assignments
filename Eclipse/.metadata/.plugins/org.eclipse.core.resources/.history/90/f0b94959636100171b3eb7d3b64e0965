@@ -1,0 +1,10 @@
+package subwayRecipes;
+
+public class BrownBread implements Bread {
+
+	@Override
+	public int getCost() {
+		return 11;
+	}
+
+}

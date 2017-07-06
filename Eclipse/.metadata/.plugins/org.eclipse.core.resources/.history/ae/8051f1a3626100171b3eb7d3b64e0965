@@ -1,0 +1,6 @@
+package subwayRecipes;
+
+public interface Salad {
+
+	void getCost();
+}

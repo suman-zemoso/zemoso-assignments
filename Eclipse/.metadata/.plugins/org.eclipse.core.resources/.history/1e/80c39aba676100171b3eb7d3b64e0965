@@ -1,0 +1,9 @@
+package subwayRecipes;
+
+public interface SubPlan {
+
+	void setBread();
+	void setSalad();
+	void setSauce();
+	void setAddOns();
+}

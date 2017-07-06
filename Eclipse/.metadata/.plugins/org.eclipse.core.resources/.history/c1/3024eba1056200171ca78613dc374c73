@@ -1,0 +1,32 @@
+package subwayRecipes;
+
+import java.util.List;
+import java.util.Scanner;
+
+public abstract class SubBuilder {
+
+	private Sub sub;
+	
+	public abstract void addBread();
+	
+	public abstract void addSalad();
+	
+	public abstract void addSauce();
+	
+	public void addAddOns(){
+		
+		System.out.println("Available AddOns are:");
+		System.out.println("1. Cheese");
+		System.out.println("2. Eggs");
+		System.out.println("3. Veggies");
+		System.out.println("4. Chicken");
+		System.out.print("Enter the index numbers of the AddOns you want, separating it with a comma (,): ");
+		
+		Scanner sc = new Scanner(System.in);
+		String input = sc.nextLine();
+		
+		for(String indexNumber: input.split(","))
+		
+		
+	}
+}

@@ -1,0 +1,23 @@
+package subwayRecipes;
+
+public class ChickenSubBuilder extends SubBuilder {
+
+	@Override
+	public void addBread() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void addSalad() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void addSauce() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

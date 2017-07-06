@@ -1,0 +1,7 @@
+package utooCab;
+
+public class Locality {
+	private final double XCOORDINATE;
+	private final double YCOORDINATE;
+	private final String NAME;
+}

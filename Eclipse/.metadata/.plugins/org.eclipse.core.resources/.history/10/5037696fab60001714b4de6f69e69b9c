@@ -1,0 +1,15 @@
+package utooCab;
+
+public abstract class Cab {
+
+	private static int counter = 0;
+	protected final int id = ++counter; //gives a unique id to the objects of the subclasses of the class Cab are created.
+	protected double rate;
+	protected boolean isBooked;
+	
+	public int getCabId(){
+		return id;
+	}
+	
+	public void setBookingStatus(boolean )
+}

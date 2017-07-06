@@ -1,0 +1,11 @@
+package subwayRecipes;
+
+public class ChickenSalad implements Salad {
+
+	@Override
+	public int getCost() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

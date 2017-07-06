@@ -1,0 +1,9 @@
+package utooCab;
+
+public class SUVCab extends Cab {
+
+	public SUVCab(double cityCostFactor){
+		rate = cityCostFactor*24;
+		model = "SUV";
+	}
+}

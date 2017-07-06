@@ -1,0 +1,23 @@
+package subwayRecipes;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ChickenSubBuilder extends SubBuilder {
+
+	@Override
+	public void addBread() {
+		sub.setBread(new HoneyBread());
+	}
+
+	@Override
+	public void addSalad() {
+		sub.setSalad(new ChickenSalad());
+	}
+
+	@Override
+	public void addSauce() {
+		List<Sauce> sauces = new ArrayList<Sauce>({new Mayonnaise(), new TomatoSauce(), new ChilliSauce()});
+	}
+
+}

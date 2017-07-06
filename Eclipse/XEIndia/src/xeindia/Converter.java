@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Converter implements Subject {
-	private double USD = 65;
-	private double GBP = 80;
-	private double Euro = 69;
+	private double USD;
+	private double GBP;
+	private double Euro;
 
 	private List<Observer> observers = new ArrayList<Observer>();
 	

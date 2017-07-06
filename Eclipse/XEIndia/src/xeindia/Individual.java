@@ -3,9 +3,9 @@ package xeindia;
 import java.text.DecimalFormat;
 
 public class Individual implements Observer {
-	private double USD = 65;
-	private double GBP = 80;
-	private double Euro = 69;
+	private double USD;
+	private double GBP;
+	private double Euro;
 	private double INR;
 	
 	private static int counter = 0;
@@ -16,7 +16,7 @@ public class Individual implements Observer {
 	public Individual(Subject converter, double INR) {
 		this.INR = INR;
 		this.converter = converter;
-		System.out.println("New Observer " + this.id);
+		System.out.println("New Observer with ID: " + this.id + " is created.\n");
 		this.converter.register(this);
 	}
 	
@@ -29,8 +29,8 @@ public class Individual implements Observer {
 	private DecimalFormat df = new DecimalFormat("0.00");
 	public void printValues() {
 		System.out.println("Observer " + id + 
-			"\n USD = " + df.format(INR/USD) + 
-			"\n GBP = " + df.format(INR/GBP) + 
-			"\n Euro = " + df.format(INR/Euro) + "\n");
+			"\n USD = " + (USD == 0?"Value not yet set":df.format(INR/USD)) + 
+			"\n GBP = " + (GBP == 0?"Value not yet set":df.format(INR/GBP)) + 
+			"\n Euro = " + (Euro == 0?"Value not yet set":df.format(INR/Euro)) + "\n");
 	}
 }

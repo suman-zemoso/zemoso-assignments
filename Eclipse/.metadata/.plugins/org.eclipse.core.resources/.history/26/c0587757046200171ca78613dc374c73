@@ -1,0 +1,18 @@
+package subwayRecipes;
+
+import java.util.List;
+
+public abstract class SubBuilder {
+
+	private Sub sub;
+	
+	public abstract void addBread();
+	
+	public abstract void addSalad();
+	
+	public abstract void addSauce();
+	
+	public void addAddOns(){
+		
+	}
+}

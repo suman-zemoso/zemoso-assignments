@@ -11,6 +11,7 @@ class PingProcess {
 		try{
 			System.out.println("pinging 10 times...");
 			p = Runtime.getRuntime().exec(cmd);
+			p.waitFor();
 			BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			String l;
 			List<Float> lis = new ArrayList<Float>();
@@ -20,7 +21,6 @@ class PingProcess {
            			if(c > 0 && c < 11){lis.add(Float.valueOf(tmp[7].substring(5)));}
 				c++;
         		}
-			p.waitFor();
 			p.destroy();
 			System.out.println("the median time taken to ping is " + findMedianTime(lis));
 		}catch(Exception e){

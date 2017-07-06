@@ -1,0 +1,20 @@
+package utooCab;
+
+public abstract class Cab {
+
+	private static int counter = 0;
+	protected final int id = ++counter; //gives a unique id to the objects of the subclasses of the class Cab are created.
+	protected double rate;
+	protected String model;
+	protected boolean isBooked = false;
+	
+	public int getCabId(){return id;}
+	
+	public void setBookingStatus(boolean bookingStatus){isBooked = bookingStatus;}
+	
+	public boolean getBookingStatus(){return isBooked;}
+	
+	public void printBill(double distance){
+		System.out.println("your total bill is: Rs." + (rate*distance));
+	}
+}

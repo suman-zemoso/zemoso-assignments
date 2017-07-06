@@ -1,0 +1,27 @@
+package suman;
+
+import java.util.Scanner;
+
+public class Suman {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		String input = sc.nextLine();
+		boolean notValidInput = true;
+		while(notValidInput){
+			for(String indexNumber: input.split(",")){
+				if(Integer.parseInt(indexNumber) > 0 && Integer.parseInt(indexNumber) < 5){
+					notValidInput = false;
+				}else{ notValidInput = true;}
+			}
+			if(notValidInput){
+				System.out.print("please enter valid Index numbers of the AddOns,"
+						+ "separating it with a comma (, ) eg:'1,3' for AddOns 1 and 3: ");
+				input = sc.nextLine();
+			}else{System.out.println("valid");}
+		}
+		
+	}
+
+}

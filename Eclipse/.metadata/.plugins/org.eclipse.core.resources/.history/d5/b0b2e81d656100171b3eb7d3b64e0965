@@ -1,0 +1,14 @@
+package subwayRecipes;
+
+public class Tomato implements Sauce {
+	
+	public Tomato(){
+		System.out.println("Tomato Sauce is added.");
+	}
+
+	@Override
+	public int getCost() {
+		return 4;
+	}
+
+}
