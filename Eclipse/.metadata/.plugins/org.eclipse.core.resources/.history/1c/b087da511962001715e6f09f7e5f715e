@@ -6,10 +6,6 @@ import java.util.List;
 
 public class ChickenTandooriSubBuilder extends SubBuilder {
 
-	public ChickenTandooriSubBuilder(){
-		sub= new Sub();
-	}
-	
 	@Override
 	public void addBread() {//chicken tandoori sub has Oats bread
 		sub.setBread(new OatsBread());
