@@ -1,0 +1,52 @@
+
+CREATE SCHEMA IF NOT EXISTS `employee_project` ;
+USE `employee_project` ;
+
+CREATE TABLE IF NOT EXISTS `employee` (
+  `employee-id` INT NOT NULL,
+  `name` VARCHAR(20) NOT NULL,
+  `gender` ENUM('male', 'female') NULL,
+  `job-title` VARCHAR(20) NULL,
+  `created-by` VARCHAR(20) NOT NULL,
+  `created-at` DATETIME NULL,
+  `modified-by` VARCHAR(20) NOT NULL,
+  `modified-at` DATETIME NULL,
+  PRIMARY KEY (`employee-id`));
+
+
+CREATE TABLE IF NOT EXISTS `report_to` (
+  `manager-id` INT NOT NULL,
+  `employee-id` INT NOT NULL,
+  `created-by` VARCHAR(20) NOT NULL,
+  `created-at` DATETIME NULL,
+  `modified-by` VARCHAR(20) NOT NULL,
+  `modified-at` DATETIME NULL,
+  PRIMARY KEY (`manager-id`, `employee-id`),
+  CONSTRAINT `fk_report_to_1`
+    FOREIGN KEY (`manager-id`)
+    REFERENCES `employee` (`employee-id`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_report_to_2`
+    FOREIGN KEY (`employee-id`)
+    REFERENCES `employee` (`employee-id`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE);
+
+
+CREATE TABLE IF NOT EXISTS `part_of_project` (
+  `employee-id` INT NOT NULL,
+  `project-id` INT NOT NULL,
+  `project-name` VARCHAR(20) NOT NULL,
+  `created-by` VARCHAR(20) NOT NULL,
+  `created-at` DATETIME NULL,
+  `modified-by` VARCHAR(20) NOT NULL,
+  `modified-at` DATETIME NULL,
+  PRIMARY KEY (`employee-id`),
+  CONSTRAINT `fk_part_of_project_1`
+    FOREIGN KEY (`employee-id`)
+    REFERENCES `employee` (`employee-id`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE);
+
+
