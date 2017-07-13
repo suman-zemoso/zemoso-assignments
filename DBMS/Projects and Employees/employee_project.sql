@@ -1,3 +1,23 @@
+-- Project and Employee Schema
+
+-- Constraints
+
+-- One employee will report to only one person. One person can be reported by many people.
+
+-- One employee will be part of only one project. One project may have multiple employees.
+
+-- Each project must have an employee. There cannot be a project with no employees.
+
+-- Entities : employee, project.
+
+-- Weak Entity : project
+
+-- employee primary key : employee-id
+
+-- project primary key : project-id
+
+
+
 CREATE SCHEMA IF NOT EXISTS `mydb`;
 USE `mydb` ;
 
