@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `hotel_booking`.`customer_hotel` (
   `modified-by` VARCHAR(40) NOT NULL,
   `modified-at` DATETIME NOT NULL,
   PRIMARY KEY (`customer-id`, `hotel-id`),
-  UNIQUE INDEX `customer-id_UNIQUE` (`customer-id` ASC),
+  UNIQUE (`customer-id`),
   CONSTRAINT `fk_bookings_1`
     FOREIGN KEY (`customer-id`)
     REFERENCES `hotel_booking`.`customer` (`customer-id`)
