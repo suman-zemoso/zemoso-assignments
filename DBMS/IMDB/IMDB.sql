@@ -18,6 +18,7 @@ CREATE TABLE IF NOT EXISTS `IMDB`.`actor` (
 
 CREATE TABLE IF NOT EXISTS `IMDB`.`movie` (
   `movie-id` INT NOT NULL,
+  `actor-id` INT NOT NULL,
   `name` VARCHAR(30) NOT NULL,
   `rating` INT NULL,
   `genre` VARCHAR(45) NOT NULL,
@@ -27,11 +28,18 @@ CREATE TABLE IF NOT EXISTS `IMDB`.`movie` (
   `created-at` DATETIME NOT NULL,
   `modified-by` VARCHAR(40) NOT NULL,
   `modified-at` DATETIME NOT NULL,
-  PRIMARY KEY (`movie-id`));
+  PRIMARY KEY (`movie-id`),
+  UNIQUE (`actor-id`),
+  CONSTRAINT `fk_movie_1`
+    FOREIGN KEY (`actor-id`)
+    REFERENCES `IMDB`.`actor` (`actor-id`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE);
 
 
 CREATE TABLE IF NOT EXISTS `IMDB`.`tv_series` (
   `tv_series-id` INT NOT NULL,
+  `actor-id` INT NOT NULL,
   `name` VARCHAR(30) NOT NULL,
   `genre` VARCHAR(45) NULL,
   `status` ENUM('running', 'stopped') NULL,
@@ -39,47 +47,12 @@ CREATE TABLE IF NOT EXISTS `IMDB`.`tv_series` (
   `created-at` DATETIME NOT NULL,
   `modified-by` VARCHAR(40) NOT NULL,
   `modified-at` DATETIME NOT NULL,
-  PRIMARY KEY (`tv_series-id`));
-
-
-CREATE TABLE IF NOT EXISTS `IMDB`.`actor_movie` (
-  `movie-id` INT NOT NULL,
-  `actor-id` INT NOT NULL,
-  `created-by` VARCHAR(40) NOT NULL,
-  `created-at` DATETIME NOT NULL,
-  `modified-by` VARCHAR(40) NOT NULL,
-  `modified-at` DATETIME NOT NULL,
-  PRIMARY KEY (`movie-id`, `actor-id`),
-  CONSTRAINT `fk_acts_in_movie_1`
-    FOREIGN KEY (`movie-id`)
-    REFERENCES `IMDB`.`movie` (`movie-id`)
-    ON DELETE RESTRICT
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_acts_in_movie_2`
+  PRIMARY KEY (`tv_series-id`),
+  UNIQUE (`actor-id`),
+  CONSTRAINT `fk_tv_series_1`
     FOREIGN KEY (`actor-id`)
     REFERENCES `IMDB`.`actor` (`actor-id`)
     ON DELETE RESTRICT
     ON UPDATE CASCADE);
-
-
-CREATE TABLE IF NOT EXISTS `IMDB`.`actor_tv_series` (
-  `actor-id` INT NOT NULL,
-  `tv_series-id` INT NOT NULL,
-  `created-by` VARCHAR(40) NOT NULL,
-  `created-at` DATETIME NOT NULL,
-  `modified-by` VARCHAR(40) NOT NULL,
-  `modified-at` DATETIME NOT NULL,
-  PRIMARY KEY (`actor-id`, `tv_series-id`),
-  CONSTRAINT `fk_acts_in_tv_series_1`
-    FOREIGN KEY (`tv_series-id`)
-    REFERENCES `IMDB`.`tv_series` (`tv_series-id`)
-    ON DELETE RESTRICT
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_acts_in_tv_series_2`
-    FOREIGN KEY (`actor-id`)
-    REFERENCES `IMDB`.`actor` (`actor-id`)
-    ON DELETE RESTRICT
-    ON UPDATE CASCADE);
-
 
 
