@@ -1,3 +1,23 @@
+-- IRCTC schema
+
+-- Constraints
+
+-- Ticket can be reserved or unreserved.	
+
+-- Each reserved ticket must correspond to a train and a customer.
+
+-- Each unreserved ticket must correspond to a customer.
+
+-- A customer cannot be in two trains at the same time.
+
+-- Entities : train, ticket, customer
+
+-- train primary key : train-id
+
+-- customer primary key : customer-id
+
+-- ticket primary key : ticket-id
+
 
 CREATE SCHEMA IF NOT EXISTS `IRCTC` ;
 USE `IRCTC` ;
