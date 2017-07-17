@@ -1,0 +1,173 @@
+package utooCab;
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Scanner;
+
+public class BookingPortal {
+
+	private List<BookingRecord> bookingRecords;
+	private List<Cab> cabs;
+	
+	public BookingPortal(List<Cab> cabs){
+		this.cabs = cabs;
+		bookingRecords = new ArrayList<BookingRecord>();
+	}
+	
+	public void makeBooking(){
+		
+		Cab cab;
+		City city = null;
+		String cabModel;
+		List<Locality> localities;
+		String customerName;
+		LinkedHashSet<String> cabModels = new LinkedHashSet<String>();
+		Locality source;
+		Locality destination;
+		DecimalFormat decimalFormat = new DecimalFormat("0.00");
+		int cityIndex;//this is the input taken from the terminal to select city.
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Welcome to Utoo Cabs");
+		System.out.print("Enter the Customer Name: ");
+		
+		customerName = sc.nextLine();
+		
+		System.out.println("Utoo Cab booking is available in the following cities:");
+		System.out.println("1. Hyderabad");
+		System.out.println("2. Bangalore");
+		System.out.println("3. Chennai");
+		
+		System.out.print("Please enter the index of the city: ");
+		
+		cityIndex = sc.nextInt();
+		
+		while(!(cityIndex > 0 && cityIndex < 4)){
+			System.out.print("Please enter valid Index of city (1 or 2 or 3): ");
+			cityIndex = sc.nextInt();
+		}
+		
+		switch(cityIndex){
+		case 1: city = new Hyderabad(); break;
+		case 2: city = new Bangalore(); break;
+		case 3: city = new Chennai(); break;
+		}
+		localities = city.getLocalities();
+		
+		boolean isCabAvailable = false;
+		
+		for(Cab tempCab: cabs){//temp cab is a temporary cab used in this for loop
+			if(tempCab.getCityName().equals(city.getCityName()) && !tempCab.getBookingStatus()){
+				isCabAvailable = true;
+				break;
+			}
+		}
+		
+		if(!isCabAvailable){
+			System.out.println("All cabs in this city are booked.");
+			sc.close();
+			return;
+		}
+		
+		System.out.println("Utoo Cab services are available in the following localities.");
+		int index = 0;//index is used to print index numbers of the localities.
+		for(Locality locality: localities){
+			System.out.println((++index) + ". " + locality.getLocalityName());
+		}
+		System.out.print("Please enter the index of pick-up locality: ");
+		int sourceIndex = sc.nextInt();//sourceIndex is the index of pick-up locality taken from terminal.
+		while(!(sourceIndex > 0 && sourceIndex <= localities.size())){
+			System.out.print("Please enter valid Index of locality: ");
+			sourceIndex = sc.nextInt();
+		}
+		source = localities.get(sourceIndex - 1);
+		
+		System.out.println("Utoo Cab can drop you in the following localities:");
+		
+		index = 0;//index is used to print index numbers of the localities.
+		for(Locality locality: localities){
+			index++;
+			if(index < sourceIndex){// this if condition helps in skipping the locality already chosen for pick-up location
+				System.out.println((index) + ". " + locality.getLocalityName());
+			}
+			if(index > sourceIndex){// this if condition helps in skipping the locality already chosen for pick-up location
+				System.out.println((index - 1) + ". " + locality.getLocalityName());
+			}
+		}
+		System.out.print("Please enter the index of drop locality: ");
+		int destinationIndex = sc.nextInt();//destinationIndex is the index of drop locality taken from terminal.
+		while(!(destinationIndex > 0 && destinationIndex <= localities.size())){
+			System.out.print("Please enter valid Index of locality: ");
+			destinationIndex = sc.nextInt();
+		}
+		
+		//this if block helps in adjusting the Index printed on 
+		//terminal to the index of locality in localities list.
+		if(destinationIndex < sourceIndex){
+			destinationIndex--;
+		}
+		destination = localities.get(destinationIndex);
+		
+		for(Cab tempCab: cabs){
+			if(tempCab.getCityName().equals(city.getCityName())){
+				cabModels.add(tempCab.getCabModel());
+			}
+		}
+		
+		System.out.println("Utoo provides the following types of cabs in " + city.getCityName() + ":");
+		index = 0;
+		for(String model: cabModels){
+			System.out.println((++index) + ". " + model);
+		}
+		System.out.print("Please enter the Index of the Cab model: ");
+		int cabModelIndex = sc.nextInt();//cabModelIndex is taken from terminal to select model of cab in LinkedHashSet cabModels.
+		while(!(cabModelIndex > 0 && cabModelIndex <= cabModels.size())){
+			System.out.print("Please enter valid Index of model: ");
+			cabModelIndex = sc.nextInt();
+		}
+		
+		Iterator<String> iterator = cabModels.iterator();
+		for(int i = 0; i < (cabModelIndex - 1); i++){
+			iterator.next();
+		}
+		cabModel = iterator.next();
+		
+		boolean isCabModelAvailable = false;
+		for(Cab tempCab: cabs){
+			if(tempCab.getCabModel().equals(cabModel) && !tempCab.getBookingStatus()){
+				isCabModelAvailable = true;
+			}
+		}
+		
+		if(!isCabModelAvailable){
+			System.out.println("This cab model is not available in this city.");
+			sc.close();
+			return;
+		}
+		
+		for(Cab tempCab: cabs){
+			if(tempCab.getCabModel().equals(cabModel) && tempCab.getCityName().equals(city.getCityName()) && 
+					!tempCab.getBookingStatus()){
+				cab = tempCab;
+				cab.setBookingStatus(true);
+				String cabBillAmount = decimalFormat.format(cab.printBillAmount(city.distance(source, destination)));
+				System.out.println("Your cab is booked from " + source.getLocalityName() + " to " + destination.getLocalityName() + 
+						"with a total bill of Rs." + cabBillAmount);
+				bookingRecords.add(new BookingRecord(cab.getCabId(), customerName, source, destination, city, cabBillAmount));
+				break;
+			}
+		}
+		sc.close();
+	}
+	
+	public void printBookings(){
+		System.out.println("Booking records:\n");
+		for(BookingRecord bookingRecord: bookingRecords){
+			bookingRecord.printCabInfo();
+			System.out.println();
+		}
+	}
+}

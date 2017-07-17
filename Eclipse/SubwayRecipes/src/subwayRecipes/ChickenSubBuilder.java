@@ -7,6 +7,7 @@ import java.util.List;
 public class ChickenSubBuilder extends SubBuilder {
 	
 	public ChickenSubBuilder(){
+		System.out.println("Chicken Sub is being prepared.");
 		sub = new Sub();
 	}
 
@@ -14,7 +15,6 @@ public class ChickenSubBuilder extends SubBuilder {
 	public void addBread() {//chicken sub has honey bread
 		Bread honeyBread= new HoneyBread();
 		sub.setBread(honeyBread);
-		System.out.println("BUG3");
 	}
 
 	@Override
@@ -29,5 +29,5 @@ public class ChickenSubBuilder extends SubBuilder {
 				Arrays.asList(new Mayonnaise(), new TomatoSauce(), new ChilliSauce()));
 		sub.setSauce(sauces);
 	}
-
+	
 }

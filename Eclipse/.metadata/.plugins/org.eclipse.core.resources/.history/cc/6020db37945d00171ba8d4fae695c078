@@ -1,5 +1,0 @@
-package paymentsIndia;
-
-public interface PaymentMode {
-	String pay();
-}

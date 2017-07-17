@@ -1,0 +1,44 @@
+package utooCab;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class UtooCab {
+
+	public static void main(String[] args) {
+		
+		List<Cab> cabs = new ArrayList<Cab>();
+
+		FactoryBuilder factoryBuilder = new FactoryBuilder();
+		
+		CabFactory cabFactory = factoryBuilder.makeCabFactory("Hyderabad");
+
+		cabs.add(cabFactory.makeCab("Micro"));
+		cabs.add(cabFactory.makeCab("Micro"));
+		cabs.add(cabFactory.makeCab("Mini"));
+		cabs.add(cabFactory.makeCab("Mini"));
+		cabs.add(cabFactory.makeCab("SUV"));	
+		
+		cabFactory = factoryBuilder.makeCabFactory("Bangalore");
+
+		cabs.add(cabFactory.makeCab("Micro"));
+		cabs.add(cabFactory.makeCab("Micro"));
+		cabs.add(cabFactory.makeCab("Mini"));
+		cabs.add(cabFactory.makeCab("Mini"));
+		cabs.add(cabFactory.makeCab("Sedan"));
+		cabs.add(cabFactory.makeCab("SUV"));
+
+		cabFactory = factoryBuilder.makeCabFactory("Chennai");
+
+		cabs.add(cabFactory.makeCab("Micro"));
+		cabs.add(cabFactory.makeCab("Micro"));
+		cabs.add(cabFactory.makeCab("Mini"));
+		cabs.add(cabFactory.makeCab("Mini"));
+		cabs.add(cabFactory.makeCab("Sedan"));
+		
+		BookingPortal bookingPortal = new BookingPortal(cabs);
+		bookingPortal.makeBooking();
+		bookingPortal.printBookings();
+	}
+
+}

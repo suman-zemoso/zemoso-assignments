@@ -1,6 +1,0 @@
-package subwayRecipes;
-
-public interface AddOn {
-
-	int getCost();
-}

@@ -10,5 +10,4 @@ public class Chicken implements AddOn {
 	public int getCost() {
 		return 35;
 	}
-
 }

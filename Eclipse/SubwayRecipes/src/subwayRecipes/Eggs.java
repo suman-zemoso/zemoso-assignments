@@ -10,5 +10,4 @@ public class Eggs implements AddOn {
 	public int getCost() {
 		return 16;
 	}
-
 }

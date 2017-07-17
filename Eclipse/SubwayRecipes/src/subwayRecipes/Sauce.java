@@ -1,6 +1,6 @@
 package subwayRecipes;
 
-public interface Sauce {//returns the cost of Sauce.
+public interface Sauce {
 
-	int getCost();
+	int getCost();//returns the cost of Sauce.
 }

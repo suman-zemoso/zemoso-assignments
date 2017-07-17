@@ -10,5 +10,4 @@ public class Cheese implements AddOn {
 	public int getCost() {
 		return 10;
 	}
-
 }

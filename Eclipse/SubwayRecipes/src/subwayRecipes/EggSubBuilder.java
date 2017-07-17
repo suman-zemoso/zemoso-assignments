@@ -5,6 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class EggSubBuilder extends SubBuilder {
+	
+	public EggSubBuilder(){
+		System.out.println("Egg Sub is being prepared.");
+		sub = new Sub();
+	}
 
 	@Override
 	public void addBread() {//egg sub has brown bread
@@ -22,5 +27,4 @@ public class EggSubBuilder extends SubBuilder {
 				Arrays.asList(new Mayonnaise(), new TomatoSauce()));
 		sub.setSauce(sauces);
 	}
-
 }

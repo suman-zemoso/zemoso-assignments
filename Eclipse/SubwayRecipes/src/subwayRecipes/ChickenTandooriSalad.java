@@ -10,5 +10,4 @@ public class ChickenTandooriSalad implements Salad {
 	public int getCost() {
 		return 60;
 	}
-
 }

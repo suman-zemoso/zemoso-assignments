@@ -1,0 +1,232 @@
+package utooCab;
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Scanner;
+
+public class BookingPortal {
+
+	private List<BookingRecord> bookingRecords;
+	private List<Cab> cabs;
+	
+	public BookingPortal(List<Cab> cabs){
+		this.cabs = cabs;
+		bookingRecords = new ArrayList<BookingRecord>();
+	}
+	
+	public void makeBooking(){
+		
+		Cab cab;
+		City city = null;
+		String cabModel;
+		List<Locality> localities;
+		String customerName;
+		LinkedHashSet<String> cabModels = new LinkedHashSet<String>();
+		Locality source;
+		Locality destination;
+		DecimalFormat decimalFormat = new DecimalFormat("0.00");
+		int cityIndex;              //this is the input taken from the terminal to select city.
+		int sourceIndex;            //this is the input taken from the terminal to source.
+		int destinationIndex;       //this is the input taken from the terminal to select destination.
+		int cabModelIndex;          //this is the input taken from the terminal to select cab Model.
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Welcome to Utoo Cabs");
+		System.out.print("Enter the Customer Name: ");
+		
+		customerName = sc.nextLine();
+		
+		System.out.println("Utoo Cab booking is available in the following cities:");
+		System.out.println("1. Hyderabad");
+		System.out.println("2. Bangalore");
+		System.out.println("3. Chennai");
+		
+		System.out.print("Please enter the index of the city: ");
+		
+		try{//this try block makes sure that input is given in numbers only.
+			cityIndex = sc.nextInt();
+		}catch(InputMismatchException e){
+			sc.nextLine();
+			cityIndex = 0;
+		}
+		
+		while(!(cityIndex > 0 && cityIndex < 4)){//this while block makes sure that input is valid number only.
+			try{
+				System.out.print("Please enter valid Index of city (1 or 2 or 3): ");
+				cityIndex = sc.nextInt();
+			}catch(InputMismatchException e){
+				sc.nextLine();
+				cityIndex = 0;
+			}
+		}
+		
+		switch(cityIndex){
+		case 1: city = new Hyderabad(); break;
+		case 2: city = new Bangalore(); break;
+		case 3: city = new Chennai(); break;
+		}
+		localities = city.getLocalities();
+		
+		boolean isCabAvailable = false;
+		
+		//this for loop checks if there is any cab available in the chosen city.
+		for(Cab tempCab: cabs){//tempCab is a temporary cab used in this for loop
+			if(tempCab.getCityName().equals(city.getCityName()) && !tempCab.getBookingStatus()){
+				isCabAvailable = true;
+				break;
+			}
+		}
+		
+		//if all the cabs in the city are booked then this if block ends the method makeBooking().
+		if(!isCabAvailable){
+			System.out.println("All cabs in this city are booked.");
+			sc.close();
+			return;
+		}
+		
+		//choosing pick-up locality.
+		System.out.println("Utoo Cab services are available in the following localities.");
+		int index = 0;//index is used to print index numbers of the localities.
+		for(Locality locality: localities){
+			System.out.println((++index) + ". " + locality.getLocalityName());
+		}
+		System.out.print("Please enter the index of pick-up locality: ");
+		
+		try{//this try block makes sure that input is given in numbers only.
+			sourceIndex = sc.nextInt();//soureIndex is the index of pick-up locality taken from terminal.
+		}catch(InputMismatchException e){
+			sc.nextLine();
+			sourceIndex = 0;
+		}
+		
+		while(!(sourceIndex > 0 && sourceIndex <= localities.size())){//this while block makes sure that input is valid number only.
+			try{
+				System.out.print("Please enter valid Index of locality: ");
+				sourceIndex = sc.nextInt();
+			}catch(InputMismatchException e){
+				sc.nextLine();
+				sourceIndex = 0;
+			}
+		}
+		
+		source = localities.get(sourceIndex - 1);
+		
+		//choosing drop locality.
+		System.out.println("Utoo Cab can drop you in the following localities:");
+		
+		index = 0;//index is used to print index numbers of the localities.
+		for(Locality locality: localities){
+			index++;
+			if(index < sourceIndex){// this if condition helps in skipping the locality already chosen for pick-up location
+				System.out.println((index) + ". " + locality.getLocalityName());
+			}
+			if(index > sourceIndex){// this if condition helps in skipping the locality already chosen for pick-up location
+				System.out.println((index - 1) + ". " + locality.getLocalityName());
+			}
+		}
+		System.out.print("Please enter the index of drop locality: ");
+		
+		try{//this try block makes sure that input is given in numbers only.
+			destinationIndex = sc.nextInt();//destinationIndex is the index of drop locality taken from terminal.
+		}catch(InputMismatchException e){
+			sc.nextLine();
+			destinationIndex = 0;
+		}
+		
+		while(!(destinationIndex > 0 && destinationIndex <= (localities.size() - 1))){//this while block makes sure that input is valid number only.
+			try{
+				System.out.print("Please enter valid Index of locality: ");
+				destinationIndex = sc.nextInt();
+			}catch(InputMismatchException e){
+				sc.nextLine();
+				destinationIndex = 0;
+			}
+		}
+		
+		//this if block helps in adjusting the Index printed on 
+		//terminal to the index of locality in localities list.
+		if(destinationIndex < sourceIndex){
+			destinationIndex--;
+		}
+		destination = localities.get(destinationIndex);
+		
+		for(Cab tempCab: cabs){//tempCab is a temporary variable used inside this for loop.
+			if(tempCab.getCityName().equals(city.getCityName())){
+				cabModels.add(tempCab.getCabModel());
+			}
+		}
+		
+		//choosing the cab model.
+		System.out.println("Utoo provides the following types of cabs in " + city.getCityName() + ":");
+		index = 0;
+		for(String model: cabModels){
+			System.out.println((++index) + ". " + model);
+		}
+		System.out.print("Please enter the Index of the Cab model: ");
+		
+		try{//this try block makes sure that input is given in numbers only.
+			cabModelIndex = sc.nextInt();//destinationIndex is the index of drop locality taken from terminal.
+		}catch(InputMismatchException e){
+			sc.nextLine();
+			cabModelIndex = 0;
+		}
+		
+		while(!(cabModelIndex > 0 && cabModelIndex <= cabModels.size())){//this while block makes sure that input is valid number only.
+			try{
+				System.out.print("Please enter valid Index of model: ");
+				cabModelIndex = sc.nextInt();
+			}catch(InputMismatchException e){
+				sc.nextLine();
+				cabModelIndex = 0;
+			}
+		}
+		
+		Iterator<String> iterator = cabModels.iterator();
+		for(int i = 0; i < (cabModelIndex - 1); i++){
+			iterator.next();
+		}
+		cabModel = iterator.next();
+		
+		//checking whether the chosen cab model is available.
+		boolean isCabModelAvailable = false;
+		for(Cab tempCab: cabs){//tempCab is a temporary variable used inside this for loop.
+			if(tempCab.getCabModel().equals(cabModel) && !tempCab.getBookingStatus()){
+				isCabModelAvailable = true;
+			}
+		}
+		
+		//if chosen cab model is not available then ending the method makeBooking().
+		if(!isCabModelAvailable){
+			System.out.println("All cabs of this model are booked.");
+			sc.close();
+			return;
+		}
+		
+		//booking a cab
+		for(Cab tempCab: cabs){//tempCab is a temporary variable used inside this for loop.
+			if(tempCab.getCabModel().equals(cabModel) && tempCab.getCityName().equals(city.getCityName()) && 
+					!tempCab.getBookingStatus()){
+				cab = tempCab;
+				cab.setBookingStatus(true);
+				String cabBillAmount = decimalFormat.format(cab.printBillAmount(city.distance(source, destination)));
+				System.out.println("Your cab is booked from " + source.getLocalityName() + " to " + destination.getLocalityName() + 
+						" with a total bill of Rs." + cabBillAmount);
+				bookingRecords.add(new BookingRecord(cab.getCabId(), customerName, source, destination, city, cabBillAmount));
+				break;
+			}
+		}
+		sc.close();
+	}
+	
+	public void printBookings(){//prints all the booking records.
+		System.out.println("\n\nBooking records:\n");
+		for(BookingRecord bookingRecord: bookingRecords){
+			bookingRecord.printCabInfo();
+			System.out.println();
+		}
+	}
+}

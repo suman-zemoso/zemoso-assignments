@@ -10,5 +10,4 @@ public class OatsBread implements Bread {
 	public int getCost() {
 		return 13;
 	}
-
 }

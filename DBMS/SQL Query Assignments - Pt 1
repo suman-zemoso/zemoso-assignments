@@ -1,0 +1,107 @@
+1. 
+SELECT
+ F.title 
+FROM
+ film F JOIN film_category FC
+  ON F.film_id = FC.film_id
+ JOIN category C
+  ON FC.category_id = C.category_id
+WHERE
+ C.name = 'comedy'
+ AND F.rating = 'PG-13';
+
+
+
+2. 
+SELECT
+ F.title 
+FROM
+ film F JOIN film_category FC
+  ON F.film_id = FC.film_id
+ JOIN category C
+  ON FC.category_id = C.category_id
+ JOIN inventory I
+  ON I.film_id = F.film_ID 
+ JOIN rental R
+  ON R.inventory_id = I.inventory_ID
+WHERE
+ C.name = 'horror'
+GROUP
+ BY F.title 
+ORDER BY
+ COUNT(R.rental_id) DESC 
+LIMIT 3;
+
+
+
+3.
+SELECT
+ DISTINCT CU.first_name,
+ CU.last_name,
+ CU.customer_id
+FROM
+ customer CU JOIN rental R
+  ON R.customer_id = CU.customer_ID
+ JOIN inventory I
+  ON R.inventory_ID = I.inventory_id
+ JOIN address A
+  ON CU.address_id = A.address_id 
+ JOIN city CI 
+  ON A.city_ID = CI.city_ID
+ JOIN country CO
+  ON CI.country_ID = CO.country_id
+ JOIN film_category FC
+  ON I.film_ID = FC.film_id
+ JOIN category CA
+  ON FC.category_id = CA.category_id
+WHERE CA.name = 'sports' AND CO.country = 'India';
+
+
+
+4. 
+SELECT DISTINCT
+ CU.first_name,
+ CU.last_name,
+ CU.customer_id
+FROM
+ inventory I JOIN rental R
+  ON R.inventory_ID = I.inventory_id
+ JOIN customer CU
+  ON R.customer_id = CU.customer_ID
+ JOIN film_actor FA
+  ON I.film_ID = FA.film_id
+ JOIN address A
+  ON CU.address_id = A.address_id
+ JOIN city CI
+  ON A.city_ID = CI.city_ID
+ JOIN country CO
+  ON CI.country_ID = CO.country_id
+ JOIN actor AC
+  ON FA.actor_id = AC.actor_ID
+WHERE
+ CO.country = 'Canada'
+ AND AC.first_name = 'NICK'
+ AND AC.last_name = 'WAHLBERG';
+
+
+
+5.
+SELECT
+ COUNT(DISTINCT FA.film_id)
+FROM
+ film_actor FA JOIN actor A
+  ON FA.actor_id = A.actor_id
+WHERE
+ A.first_name = 'SEAN'
+ AND A.last_name = 'WILLIAMS';
+
+
+
+
+
+
+
+
+
+
+

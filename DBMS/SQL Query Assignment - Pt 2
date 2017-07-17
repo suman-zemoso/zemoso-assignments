@@ -1,0 +1,86 @@
+1. 
+SELECT
+ COUNT(DISTINCT F.film_id) 
+FROM
+ film F JOIN film_category FC
+  ON F.film_id = FC.film_id
+ JOIN category C
+  ON FC.category_id = C.category_id
+WHERE
+ F.special_features = 'Deleted Scenes'
+ AND C.name = 'Documentary';
+
+
+
+2. 
+SELECT
+ COUNT(DISTINCT R.rental_id) 
+FROM
+ rental R JOIN inventory I
+  ON R.inventory_id = I.inventory_id
+ JOIN film_category FC
+  ON I.film_id = FC.film_id
+ JOIN category C
+  ON FC.category_id = C.category_id
+ JOIN store S
+  ON S.store_id = I.store_id
+ JOIN staff ST
+  ON S.manager_staff_id = ST.staff_id
+WHERE
+ C.name = 'Sci-Fi'
+ AND ST.first_name = 'Jon'
+ AND ST.last_name = 'Stephens';
+
+
+
+3. 
+SELECT
+ total_sales 
+FROM
+ sales_by_film_category 
+WHERE
+ category = 'Animation';
+
+
+
+4.
+SELECT
+ C.name,
+ COUNT(R.rental_id) 
+FROM
+ rental R JOIN inventory I
+  ON R.inventory_id = I.inventory_id
+ JOIN film_category FC
+  ON I.film_id = FC.film_id
+ JOIN customer CU
+  ON R.customer_id = CU.customer_id
+ JOIN category C
+  ON FC.category_id = C.category_id
+WHERE
+ CU.first_name = 'PATRICIA'
+ AND CU.last_name = 'JOHNSON' 
+GROUP BY
+ C.category_id 
+ORDER BY
+ COUNT(R.rental_id) DESC 
+LIMIT 3;
+
+
+
+5. 
+SELECT
+ COUNT(DISTINCT F.film_id) 
+FROM
+ rental R JOIN inventory I
+  ON R.inventory_id = I.inventory_id
+ JOIN customer C
+  ON R.customer_id = C.customer_id
+ JOIN film F
+  ON I.film_id = F.film_id
+WHERE
+ C.first_name = 'SUSAN'
+ AND C.last_name = 'WILSON'
+ AND F.rating = 'R';
+
+
+

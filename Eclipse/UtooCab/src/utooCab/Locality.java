@@ -10,6 +10,12 @@ public class Locality {
 		YCOORDINATE = yCoordinate;
 		LOCALITYNAME = name;
 	}
+
+	public double getXCoordinate(){return XCOORDINATE;}
+	
+	public double getYCoordinate(){return YCOORDINATE;}
+	
+	public String getLocalityName(){return LOCALITYNAME;}
 	
 	
 }

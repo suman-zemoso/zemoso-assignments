@@ -1,5 +1,0 @@
-package utooCabService;
-
-public abstract class Cab {
-
-}

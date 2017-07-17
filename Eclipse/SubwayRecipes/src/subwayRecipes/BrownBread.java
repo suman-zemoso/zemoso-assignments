@@ -10,5 +10,4 @@ public class BrownBread implements Bread {
 	public int getCost() {
 		return 11;
 	}
-
 }

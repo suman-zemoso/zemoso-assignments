@@ -1,9 +1,0 @@
-package subwayRecipes;
-
-public class SubwayRecipes {
-
-	public static void main(String[] args) {
-
-	}
-
-}

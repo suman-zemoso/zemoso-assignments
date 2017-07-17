@@ -10,5 +10,4 @@ public class Mayonnaise implements Sauce {
 	public int getCost() {
 		return 6;
 	}
-
 }

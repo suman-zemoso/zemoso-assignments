@@ -1,7 +1,0 @@
-package subwayRecipes;
-
-public interface Bread {//returns the price of the Bread.
-
-
-	int getCost();
-}

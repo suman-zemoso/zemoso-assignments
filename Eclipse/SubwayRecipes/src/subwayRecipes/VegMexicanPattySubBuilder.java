@@ -5,6 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class VegMexicanPattySubBuilder extends SubBuilder {
+	
+	public VegMexicanPattySubBuilder(){
+		System.out.println("Veg Mexican Patty Sub is being prepared.");
+		sub = new Sub();
+	}
 
 	@Override
 	public void addBread() {//veg mexican patty sub has White bread

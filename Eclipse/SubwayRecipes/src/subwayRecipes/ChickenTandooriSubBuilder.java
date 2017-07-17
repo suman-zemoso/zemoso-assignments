@@ -5,11 +5,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ChickenTandooriSubBuilder extends SubBuilder {
-
-	public ChickenTandooriSubBuilder(){
-		sub= new Sub();
-	}
 	
+	public ChickenTandooriSubBuilder(){
+		System.out.println("Chicken Tandoori Sub is being prepared.");
+		sub = new Sub();
+	}
+
 	@Override
 	public void addBread() {//chicken tandoori sub has Oats bread
 		sub.setBread(new OatsBread());

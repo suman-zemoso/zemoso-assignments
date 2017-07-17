@@ -10,5 +10,4 @@ public class ChilliSauce implements Sauce {
 	public int getCost() {
 		return 5;
 	}
-
 }

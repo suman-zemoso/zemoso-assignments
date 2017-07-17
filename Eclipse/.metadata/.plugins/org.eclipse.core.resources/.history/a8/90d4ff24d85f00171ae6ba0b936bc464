@@ -1,8 +1,0 @@
-package utooCabService;
-
-public class BanBranchFactory extends BranchFactory {
-
-	public BanBranchFactory(){
-		cityCostFactor = 1.4;
-	}
-}

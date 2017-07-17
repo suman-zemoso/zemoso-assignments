@@ -1,8 +1,0 @@
-package utooCabService;
-
-public abstract class Cab {
-
-	protected double rate;
-	
-	System.out.printf("10%s 10%f Rs/Km ", "rate", rate);
-}

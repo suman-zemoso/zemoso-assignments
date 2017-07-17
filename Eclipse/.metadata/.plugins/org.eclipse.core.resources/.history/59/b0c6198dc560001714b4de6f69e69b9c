@@ -1,9 +1,0 @@
-package utooCab;
-
-public class MiniCab extends Cab {
-
-	public MiniCab(double cityCostFactor){
-		rate = cityCostFactor*24;
-		model = "Mini";
-	}
-}

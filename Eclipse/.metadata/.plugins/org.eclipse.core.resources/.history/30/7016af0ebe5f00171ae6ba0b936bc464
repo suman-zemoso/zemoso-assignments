@@ -1,5 +1,0 @@
-package abstractFactoryExample;
-
-public abstract class EnemyShipBuilding {
-
-}

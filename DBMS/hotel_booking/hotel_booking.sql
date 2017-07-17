@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS `hotel_booking`.`hotel` (
 
 
 CREATE TABLE IF NOT EXISTS `hotel_booking`.`customer_hotel` (
+  `booking-id` INT NOT NULL,
   `customer-id` INT NOT NULL,
   `hotel-id` INT NOT NULL,
   `duration_in_days` INT NULL,
@@ -36,8 +37,8 @@ CREATE TABLE IF NOT EXISTS `hotel_booking`.`customer_hotel` (
   `created-at` DATETIME NOT NULL,
   `modified-by` VARCHAR(40) NOT NULL,
   `modified-at` DATETIME NOT NULL,
-  PRIMARY KEY (`customer-id`, `hotel-id`),
-  UNIQUE (`customer-id`),
+  PRIMARY KEY (`booking-id`),
+  UNIQUE (`customer-id`, `created-at`),
   CONSTRAINT `fk_bookings_1`
     FOREIGN KEY (`customer-id`)
     REFERENCES `hotel_booking`.`customer` (`customer-id`)

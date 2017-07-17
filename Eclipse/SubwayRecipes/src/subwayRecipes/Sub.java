@@ -11,7 +11,6 @@ public class Sub implements SubPlan {
 	
 	@Override
 	public void setBread(Bread bread) {
-		System.out.println("BUG2");
 		this.bread = bread;
 	}
 
@@ -44,5 +43,4 @@ public class Sub implements SubPlan {
 		
 		System.out.println("Your total amount to be paid is: Rs." + totalCost);
 	}
-
 }
