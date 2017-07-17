@@ -31,12 +31,13 @@ CREATE TABLE IF NOT EXISTS `hotel_booking`.`customer_hotel` (
   `customer-id` INT NOT NULL,
   `hotel-id` INT NOT NULL,
   `duration_in_days` INT NULL,
+  `type_of_customer` ENUM('first-time', 'loyal') NOT NULL,
   `created-by` VARCHAR(40) NOT NULL,
   `created-at` DATETIME NOT NULL,
   `modified-by` VARCHAR(40) NOT NULL,
   `modified-at` DATETIME NOT NULL,
-  `type_of_customer` ENUM('first-time', 'loyal') NOT NULL,
   PRIMARY KEY (`customer-id`, `hotel-id`),
+  UNIQUE INDEX `customer-id_UNIQUE` (`customer-id` ASC),
   CONSTRAINT `fk_bookings_1`
     FOREIGN KEY (`customer-id`)
     REFERENCES `hotel_booking`.`customer` (`customer-id`)
