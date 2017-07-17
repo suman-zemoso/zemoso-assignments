@@ -1,3 +1,21 @@
+-- Cab rental schema
+
+-- Constraints
+
+-- One driver can drive one cab. One cab can be driven by one driver.	
+
+-- One cab can have more than one customer. One customer cannot be in more than one cab at the same time.
+
+-- Each cab must have a driver. 
+
+-- Entities : driver, cab, customer
+
+-- Weak Entity : cab
+
+-- driver primary key : driver-id
+
+-- customer primary key : customer-id
+
 
 CREATE SCHEMA IF NOT EXISTS `cab_rental` ;
 USE `cab_rental` ;
